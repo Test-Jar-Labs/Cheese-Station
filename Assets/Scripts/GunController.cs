@@ -5,6 +5,13 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     
+    private enum FiringType
+    {
+        fullAuto,
+        semiAuto,
+        burst
+    }
+
     [SerializeField]
     private Transform firePoint;
 
@@ -12,7 +19,7 @@ public class GunController : MonoBehaviour
     private GameObject bulletPrefab;
 
     [SerializeField]
-    private float fireRate = 5f;
+    private float fireRate = 10f;
 
     [SerializeField]
     private float bulletForce = 40f;
@@ -27,6 +34,8 @@ public class GunController : MonoBehaviour
     private float moveSpeedMultiplier = 1f;
 
     private PlayerInput playerInput;
+
+    private Coroutine current;
 
     //TODO: Bullet Effect
     //TODO: Gun Type(fire spread, # of bullets per shot, auto/semi-auto)
@@ -44,29 +53,42 @@ public class GunController : MonoBehaviour
 
     private void OnEnable()
     {
-        playerInput.ShootEvent += HandleShoot;
+        playerInput.StartShootEvent += HandleStartShoot;
+        playerInput.StopShootEvent += HandleStopShoot;
     }
 
     private void OnDisable()
     {
-        playerInput.ShootEvent -= HandleShoot;
+        playerInput.StartShootEvent -= HandleStartShoot;
+        playerInput.StopShootEvent -= HandleStopShoot;
     }
 
-    private void HandleShoot()
+    private void HandleStartShoot()
     {
-        Shoot();
+        if (current != null) StopCoroutine(current);
+        current = StartCoroutine(ShootRoutine());
     }
 
-    private void Shoot()
+    private void HandleStopShoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-      
-        rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
-        bullet.GetComponent<BulletController>().Damage = damage;
+        if (current != null) StopCoroutine(current);
     }
 
-    
+    private IEnumerator ShootRoutine()
+    {
+        while (true)
+        {
+            //TODO: Bullet spread at firePoint.rotation.
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
-    
+            rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+
+            //TODO: more efficient way of this?
+            bullet.GetComponent<BulletController>().Damage = damage;
+
+            yield return new WaitForSeconds(1f / fireRate);
+        }
+        
+    }
 }

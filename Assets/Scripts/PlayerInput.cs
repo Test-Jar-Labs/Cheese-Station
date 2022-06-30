@@ -11,8 +11,18 @@ public class PlayerInput : MonoBehaviour, PlayerAction.IPlayerActions
     public delegate void Movement(Vector2 moveDirection);
     public Movement MovementEvent;
 
-    public delegate void Shoot();
-    public Shoot ShootEvent;
+    public delegate void StartShoot();
+    public StartShoot StartShootEvent;
+
+    public delegate void StopShoot();
+    public StopShoot StopShootEvent;
+
+    public delegate void StartInteract();
+    public StartInteract StartInteractEvent;
+
+    public delegate void StopInteract();
+    public StopInteract StopInteractEvent;
+
 
     private PlayerAction inputActions;
 
@@ -55,12 +65,25 @@ public class PlayerInput : MonoBehaviour, PlayerAction.IPlayerActions
     {
         if (context.performed)
         {
-            ShootEvent?.Invoke();
+            StartShootEvent?.Invoke();
         } 
 
         if (context.canceled)
         {
+            StopShootEvent?.Invoke();
+        }
+    }
 
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            StartInteractEvent?.Invoke();
+        }
+
+        if (context.canceled)
+        {
+            StopInteractEvent?.Invoke();
         }
     }
 }

@@ -20,7 +20,11 @@ public class BulletController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log($"deal {damage} damage to {collision}");
+        collision.gameObject.SendMessage("ReceiveDamage", damage, SendMessageOptions.RequireReceiver);
         GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+
+        
+
         Destroy(effect, 5f);
         Destroy(this.gameObject);
     }
