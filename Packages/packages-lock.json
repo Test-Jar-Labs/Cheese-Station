@@ -72,12 +72,6 @@
       "source": "builtin",
       "dependencies": {}
     },
-    "com.unity.cinemachine": {
-      "version": "2.6.15",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {}
-    },
     "com.unity.burst": {
       "version": "1.4.1",
       "depth": 1,
@@ -85,6 +79,13 @@
       "dependencies": {
         "com.unity.mathematics": "1.2.1"
       },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.cinemachine": {
+      "version": "2.6.15",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.collab-proxy": {
