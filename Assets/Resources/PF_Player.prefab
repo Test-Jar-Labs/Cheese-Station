@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 3570693926625562446}
   - component: {fileID: 3570693926625562447}
   - component: {fileID: 1426816274152185665}
+  - component: {fileID: 7399456624531076800}
   m_Layer: 0
   m_Name: PF_Player
   m_TagString: Untagged
@@ -131,7 +132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e71a8617fb2f1a4ea37cb957a9ca962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
   movementSpeed: 120
   lookDirectionOffset: 90
 --- !u!114 &3570693926625562446
@@ -291,6 +291,41 @@ MonoBehaviour:
         precision: 0
         scale: 0
       sharedBinding: {fileID: 0}
+  - descriptor:
+      name: scale
+      displayName: 
+      monoAssemblyType: UnityEngine.Vector3, UnityEngine
+      coherenceAssemblyType: Coherence.Generated.GenericScale, Assembly-CSharp
+      bakedSyncScriptGetter: coherenceLocalScale
+      bakedSyncScriptSetter: coherenceLocalScale
+      bakedSyncScriptFieldName: 
+      bakedSyncScriptCSharpType: 
+      coherenceComponentName: GenericScale
+      coherenceComponentFieldName: value
+      schemaComponentFieldName: value
+      extraData: 
+      required: 0
+      interpolable: 1
+      defaultInterpolationSettings: {fileID: 0}
+      enforcesLODingWhenFieldsOverriden: 1
+    component: {fileID: 3570693926625562443}
+    serializerAssemblyType: Coherence.Toolkit.TransformBindingSerializer, Coherence.Toolkit
+    interpolationSettings: {fileID: 0}
+    coherenceSync: {fileID: 0}
+    interpolates: 1
+    archetypeData:
+      type: 7
+      minRange: 0
+      maxRange: 0
+      scale: 2400
+      fields:
+      - type: 7
+        bits: 23
+        minRange: 0
+        maxRange: 0
+        precision: 0.001
+        scale: 2400
+      sharedBinding: {fileID: 0}
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls:
@@ -301,18 +336,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1426816274152185665}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -331,6 +354,26 @@ MonoBehaviour:
   componentActions: []
   references:
     version: 1
+--- !u!114 &7399456624531076800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3570693926625562442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc97a814921d461188a38ca20db6787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitialBufferSize: 32
+  InitialBufferDelay: 3
+  DisconnectOnTimeReset: 0
+  UseFixedSimulationFrames: 0
+  inputName: PF_Player
+  fields:
+  - name: 
+    type: 0
 --- !u!1 &3570693927246066786
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,7 +548,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3570693927355268464}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c9242aeeb53597448a6f4342c8a6180, type: 3}
   m_Name: 

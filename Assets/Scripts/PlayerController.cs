@@ -5,14 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    public Camera cam;
+    
 
     [SerializeField]
     private float movementSpeed = 20f;
 
     [SerializeField]
     private float lookDirectionOffset = 0;
+
+    private Camera cam;
 
     private Rigidbody2D rb;
 
@@ -28,7 +29,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
-        inventory = GetComponent<InventorySystem>(); 
+        inventory = GetComponent<InventorySystem>();
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     private void OnEnable()

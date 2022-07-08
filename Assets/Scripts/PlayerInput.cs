@@ -23,8 +23,9 @@ public class PlayerInput : MonoBehaviour, PlayerAction.IPlayerActions
     public delegate void StopInteract();
     public StopInteract StopInteractEvent;
 
-
     private PlayerAction inputActions;
+
+    private Vector2 lookDirection;
 
     private void Awake()
     {
@@ -37,18 +38,24 @@ public class PlayerInput : MonoBehaviour, PlayerAction.IPlayerActions
         inputActions.Player.SetCallbacks(this);
     }
 
+
     private void OnDisable()
     {
         inputActions.Player.SetCallbacks(null);
         inputActions.Disable();
     }
 
+    private void Update()
+    {
+        LookEvent?.Invoke(lookDirection);
+    }
+
     public void OnCursorPosition(InputAction.CallbackContext context)
     {
         if (context.valueType == typeof(Vector2))
         {
-            Vector2 lookDirection = context.ReadValue<Vector2>();
-            LookEvent?.Invoke(lookDirection);
+            lookDirection = context.ReadValue<Vector2>();
+            
         }
     }
 
