@@ -20,7 +20,11 @@ public class BulletController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log($"deal {damage} damage to {collision}");
-        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+
+
+
+        GameObject effect = Instantiate(hitEffect, transform.position, transform.rotation);
+        
 
         
 

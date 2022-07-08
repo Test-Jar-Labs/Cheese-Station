@@ -19,6 +19,9 @@ public class GunController : MonoBehaviour
     private GameObject bulletPrefab;
 
     [SerializeField]
+    private GameObject muzzleFlashPrefab;
+
+    [SerializeField]
     private float fireRate = 10f;
 
     [SerializeField]
@@ -80,6 +83,7 @@ public class GunController : MonoBehaviour
         {
             //TODO: Bullet spread at firePoint.rotation.
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            GameObject muzzleFlash = Instantiate(muzzleFlashPrefab, firePoint.position, this.transform.rotation, this.transform);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
             rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
